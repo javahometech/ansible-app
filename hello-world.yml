@@ -8,3 +8,7 @@
       service: name='apache2' state='started'
     - name: copy html files to apache2 server
       copy: src='./project-code/index.html'  dest='/var/www/html/index.html'
+      notify: Restart apache server
+  handlers:
+    - name: Restart apache server
+      service: name='apache2' state='restarted'

@@ -1,0 +1,10 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Install packages on Ubuntu servers
+      apt: name='apache2' state='present'
+      when: ansible_distribution == "Ubuntu"
+    - name: Install packages on Amazon Linux server
+      yum: name='httpd' state='absent'
+      when: ansible_distribution == "Amazon"

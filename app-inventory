@@ -1,5 +1,8 @@
 server1 ansible_host=35.166.255.200 ansible_user=ubuntu ansible_ssh_private_key_file=~/Downloads/hari-demo.pem
 server2 ansible_host=34.215.246.23 ansible_user=ubuntu ansible_ssh_private_key_file=~/Downloads/hari-demo.pem
+server3 ansible_host=35.162.127.91 ansible_user=ec2-user ansible_ssh_private_key_file=~/Downloads/hari-demo.pem
+
 [webservers]
 server1
 server2
+server3
