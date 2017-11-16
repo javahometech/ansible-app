@@ -1,0 +1,6 @@
+---
+- hosts: webservers[0:1]
+  become: true
+  tasks:
+    - name: install apache2 on ubuntu
+      apt: name='apache2' state='absent'

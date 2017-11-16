@@ -1,0 +1,6 @@
+---
+- hosts: webservers[2]
+  become: true
+  tasks:
+    - name: install httpd on linux
+      apt: name='httpd' state='absent'

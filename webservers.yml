@@ -1,0 +1,33 @@
+---
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Install apache server
+      apt: name='apache2' state='present'
+      when: ansible_distribution == "Ubuntu"
+    - name: Install apache server
+      yum: name='httpd' state='present'
+      when: ansible_distribution == "Amazon"
+
+    - name: Start apache2 server1
+      service: name='apache2' state='started'
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Start httpd server1
+      service: name='httpd' state='started'
+      when: ansible_distribution == "Amazon"
+
+    - name: copy html files to apache2 server
+      copy: src='./project-code/index.html'  dest='/var/www/html/index.html'
+      notify:
+        -  Restart apache server
+        -  Start httpd server1
+
+  handlers:
+    - name: Restart apache server
+      service: name='apache2' state='restarted'
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Start httpd server1
+      service: name='httpd' state='restarted'
+      when: ansible_distribution == "Amazon"
