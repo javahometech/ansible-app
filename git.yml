@@ -1,0 +1,7 @@
+- hosts: 172.31.33.68
+  become: True
+  tasks:
+    - name: install git
+      dnf:
+        name: git
+        state: present
